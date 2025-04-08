@@ -20,7 +20,7 @@ UPDATE doctors
 SET
   first_name = COALESCE(NULLIF(@first_name, ''), first_name),
   last_name = COALESCE(NULLIF(@last_name, ''), last_name),
-  dept = COALESCE(NULLIF(@dept, ''), dept),
+  dept = COALESCE(@dept, dept),
   contact = COALESCE(NULLIF(@contact, ''), contact)
 WHERE id = @id;
 

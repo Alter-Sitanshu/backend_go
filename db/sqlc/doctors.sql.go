@@ -138,7 +138,7 @@ UPDATE doctors
 SET
   first_name = COALESCE(NULLIF($1, ''), first_name),
   last_name = COALESCE(NULLIF($2, ''), last_name),
-  dept = COALESCE(NULLIF($3, ''), dept),
+  dept = COALESCE($3, dept),
   contact = COALESCE(NULLIF($4, ''), contact)
 WHERE id = $5
 `
@@ -146,7 +146,7 @@ WHERE id = $5
 type UpdateDocParams struct {
 	FirstName interface{} `json:"first_name"`
 	LastName  interface{} `json:"last_name"`
-	Dept      interface{} `json:"dept"`
+	Dept      int32       `json:"dept"`
 	Contact   interface{} `json:"contact"`
 	ID        int64       `json:"id"`
 }
